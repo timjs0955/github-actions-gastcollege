@@ -16,47 +16,46 @@ return new class extends Migration
      */
     public function up(): void
     {
-//        "species" => array:2 [
-//        "name" => "bulbasaur"
-//            "url" => "https://pokeapi.co/api/v2/pokemon-species/1/"
-//        ]
+        //        "species" => array:2 [
+        //        "name" => "bulbasaur"
+        //            "url" => "https://pokeapi.co/api/v2/pokemon-species/1/"
+        //        ]
 
-//"types" => array:2 [
-//    0 => array:2 [
-//        "slot" => 1
-//      "type" => array:2 [
-//        "name" => "grass"
-//        "url" => "https://pokeapi.co/api/v2/type/12/"
-//      ]
-//    ]
-//    1 => array:2 [
-//        "slot" => 2
-//      "type" => array:2 [
-//        "name" => "poison"
-//        "url" => "https://pokeapi.co/api/v2/type/4/"
-//      ]
-//    ]
-//  ]
+        //"types" => array:2 [
+        //    0 => array:2 [
+        //        "slot" => 1
+        //      "type" => array:2 [
+        //        "name" => "grass"
+        //        "url" => "https://pokeapi.co/api/v2/type/12/"
+        //      ]
+        //    ]
+        //    1 => array:2 [
+        //        "slot" => 2
+        //      "type" => array:2 [
+        //        "name" => "poison"
+        //        "url" => "https://pokeapi.co/api/v2/type/4/"
+        //      ]
+        //    ]
+        //  ]
 
-
-//        "abilities" => array:2 [
-//                0 => array:3 [
-//                "ability" => array:2 [
-//                "name" => "overgrow"
-//                "url" => "https://pokeapi.co/api/v2/ability/65/"
-//              ]
-//              "is_hidden" => false
-//              "slot" => 1
-//            ]
-//            1 => array:3 [
-//                "ability" => array:2 [
-//                "name" => "chlorophyll"
-//                "url" => "https://pokeapi.co/api/v2/ability/34/"
-//              ]
-//              "is_hidden" => true
-//              "slot" => 3
-//            ]
-//          ]
+        //        "abilities" => array:2 [
+        //                0 => array:3 [
+        //                "ability" => array:2 [
+        //                "name" => "overgrow"
+        //                "url" => "https://pokeapi.co/api/v2/ability/65/"
+        //              ]
+        //              "is_hidden" => false
+        //              "slot" => 1
+        //            ]
+        //            1 => array:3 [
+        //                "ability" => array:2 [
+        //                "name" => "chlorophyll"
+        //                "url" => "https://pokeapi.co/api/v2/ability/34/"
+        //              ]
+        //              "is_hidden" => true
+        //              "slot" => 3
+        //            ]
+        //          ]
 
         Schema::create('species', function (Blueprint $table) {
             $table->id();
@@ -126,12 +125,12 @@ return new class extends Migration
                 'species_id' => $speciesModel->id,
             ]);
 
-            foreach($pokemon['types'] as $type) {
+            foreach ($pokemon['types'] as $type) {
                 $typeModel = Type::firstOrCreate(['name' => $type['type']['name']]);
                 $model->types()->attach($typeModel->id);
             }
 
-            foreach($pokemon['abilities'] as $ability) {
+            foreach ($pokemon['abilities'] as $ability) {
                 $abilityModel = Ability::firstOrCreate(['name' => $ability['ability']['name']]);
                 $model->abilities()->attach($abilityModel->id);
             }

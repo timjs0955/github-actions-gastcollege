@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Pokemon;
-use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
